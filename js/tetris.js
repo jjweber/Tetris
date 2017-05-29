@@ -32,9 +32,7 @@ function collide(arena, player) {
   const [m, o] = [player.matrix, player.pos];
   for (let y = 0; y < m.length; ++y) {
     for (let x = 0; x < m[y].length; ++x) {
-      if (m[y][x] !== 0 &&
-          (arena[y + o.y] &&
-          arena[y + o.y][x + o.x]) !== 0) {
+      if (m[y][x] !== 0 && (arena[y + o.y] && arena[y + o.y][x + o.x]) !== 0) {
           return true;
       }
     }
@@ -109,9 +107,7 @@ function drawMatrix(matrix, offset) {
     row.forEach((value, x) => {
       if (value !== 0) {
         context.fillStyle = colors[value];
-        context.fillRect(x + offset.x,
-                         y + offset.y,
-                         1, 1);
+        context.fillRect(x + offset.x, y + offset.y, 1, 1);
       }
     });
   });
@@ -150,8 +146,7 @@ function playerReset() {
   const pieces = 'ILJOTSZ';
   player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
   player.pos.y = 0;
-  player.pos.x = (arena[0].length / 2 | 0) -
-                  (player.matrix[0].length / 2 | 0);
+  player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
   if (collide(arena, player)) {
     arena.forEach(row => row.fill(0));
     player.score = 0;
